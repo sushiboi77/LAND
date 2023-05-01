@@ -2,7 +2,7 @@
 //test1.ks is a boot file that will run the program on start up.
 //designed for booster propulsive landing on !KERBIN! only
 set TWR to 1.2.
-set countdown to 1.
+set countdown to 3.
 set hoveralt to 2300.
 lock impactpos to addons:tr:impactpos.
 lock maxacc to ship:maxthrust/ship:mass.
@@ -49,10 +49,11 @@ lock targpos to target:geoposition.
 addons:tr:settarget(targpos).
 
 stage.
+rcs off.
 set navMode to "SURFACE".
 lock throttcont to (constant:g0*ship:mass*twr)/ship:maxthrust.
-set steering to heading(0,90).
-set throttle to throttcont.
+lock steering to heading(0,90).
+lock throttle to throttcont.
 lock throttle to throttcont.
 lock steering to heading(0,90).
 when ship:verticalspeed > 50  then { 

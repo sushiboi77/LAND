@@ -1,5 +1,5 @@
 //Author: sushiboi
-//test.ks is a boot file that will run this program on start
+//main.ks is a boot file that will run this program on start
 //designed for booster propulsive landing on !KERBIN! only
 //all heights are in meters unless stated otherwise
 //all speed, velocities and acceleration are in meters per second (squared) unless stated otherwise
@@ -71,7 +71,7 @@ function compheading {
 }
 
 function landingburnalt {
-    return (ship:verticalSpeed^2)/(2*(maxacc-constant:g0)) + (agloffset - ship:verticalSpeed)*0.8.
+    return (ship:verticalSpeed^2)/(2*(maxacc-constant:g0)) + (agloffset - ship:verticalSpeed)*1.2.
 }
 
 function horiznontalacc {
@@ -221,8 +221,8 @@ until alt:radar < landingburnalt {
 }
 
 ///////////////////////////////////////////////LANDING BURN
-set vspeed to 30.
-set maxaoa to 5.
+set vspeed to 20.
+set maxaoa to 10.
 set steeringManager:maxstoppingtime to 2.
 lock throttle to getlandingthrottle + sin(vAng(up:forevector, facing:forevector)).
 //lock steering to lookDirUp(getsteeringlanding, ship:facing:topvector).
@@ -231,13 +231,13 @@ rcs on.
 when alt:radar < geardeployheight then {
     gear on.
 }
-when ship:velocity:surface:mag < 100 then {
+when ship:velocity:surface:mag < 180 then {
     unlock targpos.
     lock targpos to landingpos.
     lock steering to getsteeringlanding.
 }
 when alt:radar < 60 then {
-    set vspeed to 3.
+    set vspeed to 2.5.
 }
 until ship:verticalspeed > -25 {
     clearScreen.
